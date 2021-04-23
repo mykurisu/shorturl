@@ -11,7 +11,7 @@ import Config from '../config'
 @Module({
     imports: [
         HttpModule,
-        RedisModule.register(Config.redis || {}),
+        RedisModule.register(Config.redis),
     ],
     providers: [ Cache, MyLogger, MyRedisService ],
     exports: [ Cache, MyLogger, MyRedisService ]

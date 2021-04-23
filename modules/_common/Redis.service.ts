@@ -19,12 +19,11 @@ export class MyRedisService implements OnModuleInit {
     }
 
     async RedisInit() {
-        try {
-            this.client = await this.redisService.getClient();
-            this.myLogger.log('Redis INITED', 'RedisService')
-        } catch (error) {
+        this.client = await this.redisService.getClient();
+        this.client.on('ready', () => this.myLogger.log('Redis INITED', 'RedisService'));
+        this.client.on('error', (error) => {
             this.myLogger.error('Redis INIT FAIL', JSON.stringify(error), 'RedisService')
-        }
+        });
     }
 
     //设置值的方法
