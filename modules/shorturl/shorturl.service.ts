@@ -20,20 +20,18 @@ export class ShorturlService {
         }
     }
 
-    async createUrl(url: string) {
+    async createUrl(url: string, type: string = 'normal') {
         let urlKey: string = Math.random().toString(36).slice(-4);
         const _url = await this.client.get(urlKey);
         // 短链值不幸重复时将会生成8位短链值
         if (_url) {
             urlKey += Math.random().toString(36).slice(-4);
         }
-        await this.client.set(urlKey, url, 300);
-        return `${Config.defaultHost}?k=${urlKey}`;
-    }
-
-    async createEternalUrl(url: string) {
-        const urlKey: string = Math.random().toString(36).slice(-6);
-        await this.client.set(urlKey, url);
+        const dataStr = JSON.stringify({
+            url,
+            type
+        });
+        await this.client.set(urlKey, dataStr, type === 'eterna' ? -1 : 300);
         return `${Config.defaultHost}?k=${urlKey}`;
     }
 
@@ -43,7 +41,12 @@ export class ShorturlService {
     }
 
     async getUrl(k: string) {
-        const url = await this.client.get(k);
+        const dataStr = await this.client.get(k);
+        if (!dataStr) return;
+        const { url, type } = JSON.parse(dataStr);
+        if (type === 'once') {
+            await this.client.del(k);
+        }
         return url;
     }
 

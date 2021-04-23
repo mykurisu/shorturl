@@ -14,18 +14,9 @@ export class ShorturlController {
     @Post('/createUrl')
     async createUrl(
         @Body('url') url: string,
+        @Body('type') type: string,
     ) {
-        const shortUrl = await this.shorturlService.createUrl(url);
-        return {
-            shortUrl,
-        };
-    }
-
-    @Post('/createEternalUrl')
-    async createEternalUrl(
-        @Body('url') url: string,
-    ) {
-        const shortUrl = await this.shorturlService.createEternalUrl(url);
+        const shortUrl = await this.shorturlService.createUrl(url, type);
         return {
             shortUrl,
         };
