@@ -7,8 +7,9 @@ const config =  {
         host: '0.0.0.0',
         db: 0,
     },
-    cacheType: 'redis', // memory 内存缓存、redis redis缓存
-    defaultHost: 'http://localhost:8000/s/g',
+    cacheType: 'redis',
+    maxRetryTimes: 5,
+    defaultHost: 'http://localhost:8000/s',
     defaultIndex: 'http://localhost:8000/defaultIndex',
 }
 

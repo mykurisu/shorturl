@@ -1,4 +1,4 @@
-import { Controller, Body, Query, Post, Get, Redirect } from '@nestjs/common'
+import { Controller, Body, Param, Post, Get, Redirect } from '@nestjs/common'
 
 import Config from '../../config'
 import { ShorturlService } from './shorturl.service'
@@ -22,21 +22,21 @@ export class ShorturlController {
         };
     }
 
-    @Post('/deleteEternalUrl')
+    @Post('/deleteUrl')
     async deleteEternalUrl(
         @Body('k') k: string,
     ) {
-        await this.shorturlService.deleteEternalUrl(k);
+        await this.shorturlService.deleteUrl(k);
         return {};
     }
 
-    @Get('/g')
+    @Get('/:key')
     @Redirect(Config.defaultIndex, 302)
     async getUrl(
-        @Query('k') k: string,
+        @Param('key') key: string,
     ) {
-        if (k) {
-            const url = await this.shorturlService.getUrl(k);
+        if (key) {
+            const url = await this.shorturlService.getUrl(key);
             return {
                 url
             }
