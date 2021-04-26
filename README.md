@@ -41,7 +41,7 @@ defaultIndex: 'http://localhost:8000/defaultIndex',
 | redis.db | 0 | redis具体储存库表 |
 | cacheType | redis | 短链储存模式，接受memory/redis |
 | maxRetryTimes | 5 | 生成短链接最大重试次数 |
-| defaultHost | http://localhost:8000/s/g | 短链接前缀 |
+| defaultHost | http://localhost:8000/s | 短链接前缀 |
 | defaultIndex | http://localhost:8000/defaultIndex | 短链接失效后重定向地址 |
 
 **内置接口**
