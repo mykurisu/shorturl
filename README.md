@@ -1,5 +1,7 @@
 # Shorturl
 
+> 基于fast-nest脚手架，有兴趣的同学可以[移步至fast-nest](https://github.com/mykurisu/fast-nest)
+
 **具体启动方式**
 
 > 首先请确保有可用的redis，否则无法顺利启动服务。
