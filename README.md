@@ -29,7 +29,7 @@ redis: {
 },
 cacheType: 'redis',
 maxRetryTimes: 5,
-defaultHost: 'http://localhost:8000/s/g',
+defaultHost: 'http://localhost:8000/s',
 defaultIndex: 'http://localhost:8000/defaultIndex',
 ```
 
